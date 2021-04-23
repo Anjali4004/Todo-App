@@ -3,8 +3,16 @@ import React,{useState} from "react";
 
 function Main(props) {
     const [taskName, setTaskName] = useState("");
+    const [apiResponse, setApiResponse]=useState("");
     let id="0";
+    const callAPI=()=> {
+      fetch("http://localhost:9000/testAPI")
+          .then(res => res.text())
+          .then(res => setApiResponse(res ));
+          console.log(apiResponse+"anj");
+  }
     const handleSubmit=(e)=>{
+      callAPI();
       e.preventDefault();
       if(taskName!=="" )
       {
@@ -49,6 +57,7 @@ function Main(props) {
      
       </div>
        <ul>
+         <p>{apiResponse}</p>
          {mapped()}
      </ul>
      </div>
